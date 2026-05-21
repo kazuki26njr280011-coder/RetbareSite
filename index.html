@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RetBareServer 公式 | Minecraft マルチプレイサーバー</title>
-<meta name="description" content="RetBareServerは、BedWars・SkyWars・サバイバル・OneBlockを楽しめるMinecraft Java Edition 1.21.1 マルチプレイサーバー。独自経済システム、5種のガチャ、SmartSpawner、80種以上のカスタムエンチャント搭載。">
+<meta name="description" content="RetBareServerは、BedWars・SkyWars・Duel・サバイバル・OneBlockを楽しめるMinecraft Java Edition 1.21.1 マルチプレイサーバー。独自経済、5種のガチャ、Ultra Cosmetics、80種以上のカスタムエンチャント搭載。">
 <meta property="og:title" content="RetBareServer 公式">
 <meta property="og:description" content="Minecraft 1.21.1 マルチプレイサーバー / 110.67.56.168:25565">
 <meta property="og:image" content="Open_Graph_social_media_image_1200x630_dimensions.png">
@@ -14,10 +14,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@500;700&family=JetBrains+Mono:wght@500;700&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   RetBareServer 公式サイト スタイル
-   ============================================================ */
-
 :root{
   --red:#C8202E;
   --blue:#1B3A8C;
@@ -26,126 +22,93 @@
   --gold:#B89248;
   --max:1280px;
 }
-
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
   font-family:'Noto Sans JP','Inter',sans-serif;
-  font-weight:500;
-  color:var(--black);
-  background:var(--off);
-  line-height:1.75;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  font-weight:500;color:var(--black);background:var(--off);
+  line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 img{display:block;max-width:100%;height:auto;}
 a{color:inherit;text-decoration:none;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;}
 ul{list-style:none;}
+code{font-family:'JetBrains Mono',monospace;background:var(--black);color:var(--off);padding:2px 8px;font-size:.9em;}
+.section-dark code{background:var(--off);color:var(--black);}
 
-/* ===== ナビゲーション ===== */
+/* ===== ナビ ===== */
 .nav{
   position:fixed;top:0;left:0;right:0;height:72px;
   background:rgba(21,21,26,.92);
-  border-bottom:1px solid var(--gold);
-  z-index:1000;
-  transition:background .2s;
+  border-bottom:1px solid var(--gold);z-index:1000;transition:background .2s;
 }
 .nav.scrolled{background:rgba(21,21,26,1);}
 .nav-inner{
-  max-width:var(--max);margin:0 auto;height:100%;
-  padding:0 40px;
-  display:flex;align-items:center;justify-content:space-between;
+  max-width:var(--max);margin:0 auto;height:100%;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
 }
+.nav-left{display:flex;align-items:center;gap:32px;}
 .nav-logo{
-  font-family:'Anton',sans-serif;
-  font-size:22px;letter-spacing:.05em;color:var(--off);
-  font-style:italic;
+  font-family:'Anton',sans-serif;font-size:22px;letter-spacing:.05em;
+  color:var(--off);font-style:italic;white-space:nowrap;
 }
 .nav-logo .r{color:var(--red);}
 .nav-logo .b{color:var(--blue);background:var(--off);padding:0 4px;}
-.nav-links{display:flex;gap:32px;align-items:center;}
+.nav-update{
+  font-size:11px;font-weight:700;letter-spacing:.15em;
+  color:var(--gold);border:1px solid var(--gold);
+  padding:6px 12px;font-family:'Inter',sans-serif;
+  transition:background .15s,color .15s;
+}
+.nav-update:hover{background:var(--gold);color:var(--black);}
+.nav-links{display:flex;gap:24px;align-items:center;}
 .nav-links a{
-  color:var(--off);font-size:14px;font-weight:700;
-  letter-spacing:.05em;
-  padding:8px 0;border-bottom:2px solid transparent;
-  transition:border-color .15s;
+  color:var(--off);font-size:13px;font-weight:700;letter-spacing:.05em;
+  padding:8px 0;border-bottom:2px solid transparent;transition:border-color .15s;
 }
 .nav-links a:hover{border-bottom-color:var(--red);}
 .nav-links a.discord{
-  background:var(--blue);color:var(--off);
-  padding:10px 20px;border:none;
+  background:var(--blue);color:var(--off);padding:10px 18px;border:none;
 }
 .nav-links a.discord:hover{background:var(--off);color:var(--blue);}
-.nav-burger{
-  display:none;width:32px;height:32px;
-  flex-direction:column;justify-content:center;gap:6px;
-}
-.nav-burger span{
-  display:block;width:100%;height:2px;background:var(--off);
-  transition:transform .2s,opacity .2s;
-}
+.nav-burger{display:none;width:32px;height:32px;flex-direction:column;justify-content:center;gap:6px;}
+.nav-burger span{display:block;width:100%;height:2px;background:var(--off);}
 
 /* ===== ヒーロー ===== */
 .hero{
   position:relative;min-height:100vh;
   background:url('Wide_cinematic_Minecraft_server_hero_banner_3200x_1.png') center/cover no-repeat var(--black);
   display:flex;align-items:center;justify-content:center;
-  padding:120px 24px 80px;
-  text-align:center;
-  color:var(--off);
+  padding:120px 24px 80px;text-align:center;color:var(--off);
 }
 .hero::before{
   content:'';position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(21,21,26,.4) 0%,rgba(21,21,26,.7) 100%);
 }
 .hero-inner{position:relative;z-index:2;max-width:960px;}
-.hero-logo{
-  max-width:560px;margin:0 auto 32px;
-  filter:drop-shadow(0 4px 16px rgba(0,0,0,.5));
-}
-.hero h1{
-  font-family:'Noto Sans JP',sans-serif;font-weight:900;
-  font-size:clamp(28px,5vw,52px);
-  line-height:1.3;letter-spacing:.02em;
-  margin-bottom:20px;
-}
-.hero .sub{
-  font-size:clamp(13px,1.6vw,17px);font-weight:500;
-  opacity:.85;margin-bottom:48px;
-}
+.hero-logo{max-width:560px;margin:0 auto 32px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.5));}
+.hero h1{font-weight:900;font-size:clamp(28px,5vw,52px);line-height:1.3;letter-spacing:.02em;margin-bottom:20px;}
+.hero .sub{font-size:clamp(13px,1.6vw,17px);font-weight:500;opacity:.85;margin-bottom:48px;}
 .address-box{
-  display:inline-flex;align-items:stretch;
-  background:var(--black);
-  border-left:3px solid var(--red);
-  border-right:3px solid var(--blue);
-  margin-bottom:32px;
-  font-family:'JetBrains Mono',monospace;
+  display:inline-flex;align-items:stretch;background:var(--black);
+  border-left:3px solid var(--red);border-right:3px solid var(--blue);
+  margin-bottom:32px;font-family:'JetBrains Mono',monospace;
 }
 .address-box .label{
-  background:var(--gold);color:var(--black);
-  padding:14px 18px;font-size:11px;font-weight:700;
-  letter-spacing:.15em;display:flex;align-items:center;
+  background:var(--gold);color:var(--black);padding:14px 18px;
+  font-size:11px;font-weight:700;letter-spacing:.15em;display:flex;align-items:center;
 }
-.address-box .addr{
-  padding:14px 24px;font-size:18px;color:var(--off);
-  display:flex;align-items:center;
-}
+.address-box .addr{padding:14px 24px;font-size:18px;color:var(--off);display:flex;align-items:center;}
 .address-box .copy{
-  padding:0 20px;color:var(--off);
-  border-left:1px solid #333;
-  font-size:12px;font-weight:700;letter-spacing:.1em;
-  transition:background .15s,color .15s;
+  padding:0 20px;color:var(--off);border-left:1px solid #333;
+  font-size:12px;font-weight:700;letter-spacing:.1em;transition:background .15s,color .15s;
 }
 .address-box .copy:hover{background:var(--off);color:var(--black);}
 .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
 .btn{
-  display:inline-block;padding:18px 36px;
-  font-size:15px;font-weight:700;letter-spacing:.1em;
-  border:2px solid transparent;
-  transition:all .15s;
-  text-transform:uppercase;
-  font-family:'Inter',sans-serif;
+  display:inline-block;padding:18px 36px;font-size:15px;font-weight:700;
+  letter-spacing:.1em;border:2px solid transparent;transition:all .15s;
+  text-transform:uppercase;font-family:'Inter',sans-serif;
 }
 .btn-red{background:var(--red);color:var(--off);border-color:var(--red);}
 .btn-red:hover{background:var(--off);color:var(--red);}
@@ -153,326 +116,300 @@ ul{list-style:none;}
 .btn-blue:hover{background:var(--blue);color:var(--off);}
 
 /* ===== セクション共通 ===== */
-section{padding:0;}
-.section-header{
-  width:100%;
-  display:block;
-}
+.section-header{width:100%;display:block;}
 .section-header img{width:100%;height:auto;display:block;}
-.section-body{
-  max-width:var(--max);margin:0 auto;
-  padding:80px 40px 120px;
-}
+.section-body{max-width:var(--max);margin:0 auto;padding:80px 40px 120px;}
 .section-light{background:var(--off);}
 .section-dark{background:var(--black);color:var(--off);}
 .section-dark .lead{color:var(--off);}
-.lead{
-  font-size:17px;max-width:760px;margin-bottom:56px;
-  line-height:1.9;
+.lead{font-size:17px;max-width:760px;margin-bottom:56px;line-height:1.9;}
+.sub-heading{
+  font-family:'Anton',sans-serif;font-size:14px;letter-spacing:.2em;
+  color:var(--gold);margin-bottom:12px;
 }
+.block-heading{
+  font-weight:900;font-size:28px;margin-bottom:16px;line-height:1.4;
+  border-left:4px solid var(--red);padding-left:16px;
+}
+.block-heading.blue{border-left-color:var(--blue);}
 
-/* ===== サーバー概要 3カード ===== */
-.overview-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:24px;
-}
-.overview-card{
-  background:var(--off);border:1px solid var(--black);
-  padding:40px 32px;position:relative;
-  transition:transform .2s;
-}
-.overview-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:var(--red);
-}
+/* ===== Overview 3カード ===== */
+.overview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.overview-card{background:var(--off);border:1px solid var(--black);padding:40px 32px;position:relative;}
+.overview-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);}
 .overview-card:nth-child(2)::before{background:var(--blue);}
 .overview-card:nth-child(3)::before{background:var(--gold);}
-.overview-card .num{
-  font-family:'Anton',sans-serif;font-size:48px;
-  color:var(--red);line-height:1;margin-bottom:16px;
-}
+.overview-card .num{font-family:'Anton',sans-serif;font-size:48px;color:var(--red);line-height:1;margin-bottom:16px;}
 .overview-card:nth-child(2) .num{color:var(--blue);}
 .overview-card:nth-child(3) .num{color:var(--gold);}
-.overview-card h3{
-  font-weight:900;font-size:22px;margin-bottom:12px;
-}
+.overview-card h3{font-weight:900;font-size:22px;margin-bottom:12px;}
 .overview-card p{font-size:14px;line-height:1.8;}
 
 /* ===== コンテンツカード ===== */
-.card-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);
-  gap:32px;
-}
-.content-card{
-  background:var(--black);color:var(--off);
-  position:relative;overflow:hidden;
-  transition:transform .2s;
-}
-.content-card::after{
-  content:'';position:absolute;top:0;left:0;
-  width:4px;height:0;background:var(--red);
-  transition:height .3s;
-}
+.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;}
+.card-grid.three{grid-template-columns:repeat(3,1fr);}
+.card-grid.four{grid-template-columns:repeat(4,1fr);}
+.content-card{background:var(--black);color:var(--off);position:relative;overflow:hidden;}
+.content-card::after{content:'';position:absolute;top:0;left:0;width:4px;height:0;background:var(--red);transition:height .3s;}
 .content-card:hover::after{height:100%;}
 .content-card:nth-child(2)::after{background:var(--blue);}
 .content-card:nth-child(3)::after{background:var(--gold);}
 .content-card:nth-child(4)::after{background:var(--blue);}
 .content-card img{width:100%;aspect-ratio:1/1;object-fit:cover;}
-.content-card .body{padding:28px 32px 36px;}
-.content-card h3{
-  font-weight:900;font-size:20px;margin-bottom:10px;
-}
-.content-card p{font-size:14px;line-height:1.8;opacity:.9;}
+.content-card .body{padding:24px 28px 32px;}
+.content-card h3{font-weight:900;font-size:18px;margin-bottom:10px;}
+.content-card p{font-size:13px;line-height:1.8;opacity:.9;}
 .tag{
-  display:inline-block;padding:4px 10px;
-  font-size:11px;font-weight:700;letter-spacing:.1em;
-  border:1px solid var(--gold);color:var(--gold);
+  display:inline-block;padding:4px 10px;font-size:11px;font-weight:700;
+  letter-spacing:.1em;border:1px solid var(--gold);color:var(--gold);
   margin-bottom:14px;font-family:'Inter',sans-serif;
 }
 
-/* ===== 経済システム 稼ぎ方リスト ===== */
-.money-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);
-  gap:24px;margin-bottom:64px;
+/* ===== Duelグリッド (8種目) ===== */
+.duel-info-box{
+  background:rgba(255,255,255,.04);border:1px solid #333;
+  padding:32px;margin-bottom:48px;
 }
-.money-item{
-  background:var(--off);border-left:4px solid var(--red);
-  padding:28px 32px;
-}
+.duel-info-box h3{font-weight:900;font-size:20px;margin-bottom:16px;}
+.duel-info-box p{font-size:14px;line-height:1.9;}
+.duel-info-box code{background:var(--off);color:var(--black);}
+
+/* ===== 経済 ===== */
+.money-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.money-item{background:var(--off);border-left:4px solid var(--red);padding:28px 32px;}
 .money-item:nth-child(2){border-left-color:var(--blue);}
 .money-item:nth-child(3){border-left-color:var(--gold);}
 .money-item:nth-child(4){border-left-color:var(--black);}
-.money-item .step{
-  font-family:'Anton',sans-serif;font-size:14px;
-  letter-spacing:.15em;color:var(--red);margin-bottom:8px;
-}
+.money-item .step{font-family:'Anton',sans-serif;font-size:14px;letter-spacing:.15em;color:var(--red);margin-bottom:8px;}
 .money-item:nth-child(2) .step{color:var(--blue);}
 .money-item:nth-child(3) .step{color:var(--gold);}
 .money-item:nth-child(4) .step{color:var(--black);}
 .money-item h4{font-weight:900;font-size:18px;margin-bottom:10px;}
 .money-item p{font-size:14px;line-height:1.8;}
 
-/* ===== ガチャグリッド ===== */
-.gacha-banner{
-  width:100%;background:var(--black);
-  padding:40px;margin-bottom:48px;text-align:center;
-}
+/* ===== ガチャ ===== */
+.gacha-banner{width:100%;background:var(--black);padding:40px;margin-bottom:48px;text-align:center;}
 .gacha-banner img{margin:0 auto;max-width:100%;}
-.gacha-grid{
-  display:grid;grid-template-columns:repeat(5,1fr);
-  gap:16px;
-}
-.gacha-card{
-  background:var(--off);padding:28px 20px;
-  border:1px solid var(--black);
-  text-align:center;
-}
-.gacha-card h4{
-  font-weight:900;font-size:16px;margin-bottom:8px;
-}
+.gacha-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+.gacha-card{background:var(--off);padding:28px 20px;border:1px solid var(--black);text-align:center;}
+.gacha-card h4{font-weight:900;font-size:16px;margin-bottom:8px;}
 .gacha-card .price{
-  font-family:'JetBrains Mono',monospace;font-weight:700;
-  font-size:14px;color:var(--red);
-  border:1px solid var(--red);padding:4px 10px;
-  display:inline-block;margin-bottom:12px;
+  font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;
+  color:var(--red);border:1px solid var(--red);padding:4px 10px;display:inline-block;margin-bottom:12px;
 }
 .gacha-card:nth-child(2) .price{color:var(--blue);border-color:var(--blue);}
-.gacha-card:nth-child(3) .price{color:var(--red);border-color:var(--red);}
 .gacha-card:nth-child(4) .price{color:var(--blue);border-color:var(--blue);}
 .gacha-card:nth-child(5) .price{color:var(--gold);border-color:var(--gold);}
 .gacha-card p{font-size:12px;line-height:1.7;}
 
 /* ===== 機能紹介 ===== */
-.feature-row{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:48px;align-items:center;margin-bottom:96px;
-}
+.feature-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:96px;}
 .feature-row:last-child{margin-bottom:0;}
 .feature-row.reverse{direction:rtl;}
 .feature-row.reverse > *{direction:ltr;}
 .feature-row img{width:100%;border:1px solid var(--black);}
-.feature-text h3{
-  font-family:'Anton',sans-serif;font-size:14px;
-  letter-spacing:.2em;color:var(--gold);margin-bottom:12px;
-}
-.feature-text h2{
-  font-weight:900;font-size:32px;margin-bottom:20px;
-  line-height:1.4;
-}
-.feature-text p{font-size:15px;line-height:1.9;}
+.feature-text h2{font-weight:900;font-size:32px;margin-bottom:20px;line-height:1.4;}
+.feature-text p{font-size:15px;line-height:1.9;margin-bottom:16px;}
 
-/* ===== コマンドリファレンス ===== */
-.cmd-list{
-  background:var(--off);border:1px solid var(--black);
+/* ===== コスメ全リスト ===== */
+.cosmo-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:48px;
 }
-.cmd-row{
-  display:grid;grid-template-columns:200px 1fr 80px;
-  align-items:center;
-  padding:14px 24px;
-  border-bottom:1px solid #ddd;
+.cosmo-block{
+  background:rgba(255,255,255,.04);border-top:3px solid var(--red);
+  padding:28px 32px;
 }
-.cmd-row:last-child{border-bottom:none;}
-.cmd-row:hover{background:rgba(21,21,26,.04);}
-.cmd-name{
-  font-family:'JetBrains Mono',monospace;font-weight:700;
-  background:var(--black);color:var(--off);
-  padding:6px 12px;font-size:13px;display:inline-block;
+.cosmo-block:nth-child(2n){border-top-color:var(--blue);}
+.cosmo-block:nth-child(3),
+.cosmo-block:nth-child(6){border-top-color:var(--gold);}
+.cosmo-block h4{
+  font-weight:900;font-size:18px;margin-bottom:6px;
+  display:flex;justify-content:space-between;align-items:baseline;
 }
-.cmd-desc{font-size:14px;}
-.cmd-copy{
-  font-size:11px;font-weight:700;letter-spacing:.1em;
-  color:var(--blue);text-align:right;
+.cosmo-block .en{
+  font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.15em;
+  color:var(--gold);margin-bottom:14px;
+}
+.cosmo-block .count{
+  font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);
+}
+.cosmo-list{
+  display:flex;flex-wrap:wrap;gap:6px;
+}
+.cosmo-list span{
+  display:inline-block;padding:4px 10px;font-size:12px;
+  background:rgba(255,255,255,.06);border:1px solid #333;
   font-family:'Inter',sans-serif;
 }
-.cmd-copy:hover{color:var(--red);}
 
-/* ===== ルールリスト ===== */
-.rule-cols{
-  display:grid;grid-template-columns:1fr 1fr;gap:32px;
+/* ===== コマンドリスト ===== */
+.cmd-list{background:var(--off);border:1px solid var(--black);}
+.section-dark .cmd-list{background:#1c1c22;border-color:#333;}
+.cmd-row{
+  display:grid;grid-template-columns:240px 1fr 80px;align-items:center;
+  padding:14px 24px;border-bottom:1px solid #ddd;
 }
-.rule-block h3{
-  font-weight:900;font-size:18px;margin-bottom:16px;
-  padding-bottom:10px;border-bottom:2px solid var(--red);
+.section-dark .cmd-row{border-bottom-color:#333;}
+.cmd-row:last-child{border-bottom:none;}
+.cmd-name{
+  font-family:'JetBrains Mono',monospace;font-weight:700;
+  background:var(--black);color:var(--off);padding:6px 12px;font-size:13px;display:inline-block;
 }
+.section-dark .cmd-name{background:var(--off);color:var(--black);}
+.cmd-desc{font-size:14px;}
+.cmd-copy{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--blue);text-align:right;font-family:'Inter',sans-serif;}
+.cmd-copy:hover{color:var(--red);}
+.section-dark .cmd-copy{color:var(--gold);}
+.cmd-group-title{
+  font-family:'Anton',sans-serif;font-size:14px;letter-spacing:.2em;
+  color:var(--gold);margin:32px 0 12px;
+}
+
+/* ===== トレード ===== */
+.trade-cmd-row{
+  display:flex;gap:24px;flex-wrap:wrap;margin-top:32px;
+}
+.trade-cmd-card{
+  flex:1;min-width:280px;background:var(--off);
+  border-left:4px solid var(--red);padding:24px 28px;
+}
+.trade-cmd-card:nth-child(2){border-left-color:var(--blue);}
+.trade-cmd-card .cmd{
+  font-family:'JetBrains Mono',monospace;font-weight:700;
+  background:var(--black);color:var(--off);padding:8px 14px;display:inline-block;margin-bottom:12px;font-size:14px;
+}
+.trade-cmd-card h4{font-weight:900;font-size:17px;margin-bottom:8px;}
+.trade-cmd-card p{font-size:13px;line-height:1.8;}
+
+/* ===== ルール ===== */
+.rule-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.rule-block h3{font-weight:900;font-size:18px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--red);}
 .rule-block.blue h3{border-bottom-color:var(--blue);}
-.rule-block ul li{
-  padding:10px 0 10px 24px;position:relative;
-  border-bottom:1px solid #ddd;
-  font-size:14px;line-height:1.7;
-}
-.rule-block ul li::before{
-  content:'×';position:absolute;left:0;top:10px;
-  color:var(--red);font-weight:700;
-}
+.rule-block ul li{padding:10px 0 10px 24px;position:relative;border-bottom:1px solid #ddd;font-size:14px;line-height:1.7;}
+.rule-block ul li::before{content:'×';position:absolute;left:0;top:10px;color:var(--red);font-weight:700;}
 .rule-block.blue ul li::before{content:'△';color:var(--blue);}
 
-/* ===== FAQ ===== */
-.faq details{
-  border:1px solid #333;margin-bottom:8px;
-  background:var(--off);color:var(--black);
+/* ===== アップデート履歴 ===== */
+.changelog{position:relative;padding-left:48px;}
+.changelog::before{
+  content:'';position:absolute;left:16px;top:0;bottom:0;
+  width:2px;background:var(--gold);
 }
-.section-dark .faq details{background:#1f1f25;color:var(--off);border-color:#333;}
-.faq summary{
-  padding:20px 28px;font-weight:700;font-size:15px;
-  cursor:pointer;list-style:none;position:relative;
-  padding-left:64px;
+.update-item{
+  position:relative;margin-bottom:32px;
+  background:rgba(255,255,255,.04);border:1px solid #333;
+  padding:24px 28px;
 }
-.faq summary::-webkit-details-marker{display:none;}
-.faq summary::before{
-  content:'Q.';position:absolute;left:24px;top:20px;
-  font-family:'Anton',sans-serif;font-size:18px;
-  color:var(--red);
+.update-item::before{
+  content:'';position:absolute;left:-39px;top:28px;width:14px;height:14px;
+  background:var(--red);border:3px solid var(--black);
 }
-.faq summary::after{
-  content:'+';position:absolute;right:24px;top:18px;
-  font-size:24px;font-weight:300;
-  transition:transform .2s;
+.update-item:nth-child(2n)::before{background:var(--blue);}
+.update-item:nth-child(3n)::before{background:var(--gold);}
+.update-item .meta{
+  display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap;
 }
-.faq details[open] summary::after{transform:rotate(45deg);}
-.faq .ans{
-  padding:0 28px 24px 64px;font-size:14px;line-height:1.9;
-  position:relative;
+.update-item .date{
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  color:var(--gold);font-weight:700;
 }
-.faq .ans::before{
-  content:'A.';position:absolute;left:24px;top:-2px;
-  font-family:'Anton',sans-serif;font-size:18px;
-  color:var(--blue);
+.update-item .badge{
+  font-family:'Inter',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.15em;padding:3px 10px;
 }
+.badge-feat{background:var(--blue);color:var(--off);}
+.badge-fix{background:var(--red);color:var(--off);}
+.badge-event{background:var(--gold);color:var(--black);}
+.badge-info{background:#333;color:var(--off);}
+.update-item h4{font-weight:900;font-size:17px;margin-bottom:10px;}
+.update-item p{font-size:14px;line-height:1.85;}
+.update-item ul{margin-top:8px;padding-left:20px;}
+.update-item ul li{font-size:14px;line-height:1.8;list-style:disc;margin-bottom:4px;}
 
-/* ===== 最終CTA ===== */
-.final-cta{
-  background:var(--black);color:var(--off);
-  padding:120px 40px;text-align:center;
-  border-top:3px solid var(--gold);
+.ranking{margin-top:14px;background:rgba(0,0,0,.3);padding:18px 24px;border-left:3px solid var(--gold);}
+.ranking-row{
+  display:grid;grid-template-columns:60px 1fr 90px;align-items:center;
+  padding:8px 0;border-bottom:1px solid #333;font-size:13px;
 }
-.final-cta h2{
-  font-weight:900;font-size:clamp(28px,4vw,44px);
-  margin-bottom:24px;line-height:1.4;
-}
+.ranking-row:last-child{border-bottom:none;}
+.ranking-row .rank{font-family:'Anton',sans-serif;font-size:18px;color:var(--gold);}
+.ranking-row .pt{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--red);font-weight:700;}
+
+/* ===== FAQ ===== */
+.faq details{border:1px solid #333;margin-bottom:8px;background:var(--off);color:var(--black);}
+.section-dark .faq details{background:#1f1f25;color:var(--off);border-color:#333;}
+.faq summary{padding:20px 28px;font-weight:700;font-size:15px;cursor:pointer;list-style:none;position:relative;padding-left:64px;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::before{content:'Q.';position:absolute;left:24px;top:20px;font-family:'Anton',sans-serif;font-size:18px;color:var(--red);}
+.faq summary::after{content:'+';position:absolute;right:24px;top:18px;font-size:24px;font-weight:300;transition:transform .2s;}
+.faq details[open] summary::after{transform:rotate(45deg);}
+.faq .ans{padding:0 28px 24px 64px;font-size:14px;line-height:1.9;position:relative;}
+.faq .ans::before{content:'A.';position:absolute;left:24px;top:-2px;font-family:'Anton',sans-serif;font-size:18px;color:var(--blue);}
+
+/* ===== Final CTA ===== */
+.final-cta{background:var(--black);color:var(--off);padding:120px 40px;text-align:center;border-top:3px solid var(--gold);}
+.final-cta h2{font-weight:900;font-size:clamp(28px,4vw,44px);margin-bottom:24px;line-height:1.4;}
 .final-cta p{opacity:.8;margin-bottom:40px;}
 
-/* ===== フッター ===== */
-footer{
-  background:#0c0c10;color:var(--off);
-  padding:64px 40px 32px;
-  border-top:3px solid var(--gold);
-}
-.footer-inner{
-  max-width:var(--max);margin:0 auto;
-  display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;
-  margin-bottom:48px;
-}
-.footer-brand .logo{
-  font-family:'Anton',sans-serif;font-size:24px;
-  letter-spacing:.05em;font-style:italic;margin-bottom:12px;
-}
+/* ===== Footer ===== */
+footer{background:#0c0c10;color:var(--off);padding:64px 40px 32px;border-top:3px solid var(--gold);}
+.footer-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.footer-brand .logo{font-family:'Anton',sans-serif;font-size:24px;letter-spacing:.05em;font-style:italic;margin-bottom:12px;}
 .footer-brand .logo .r{color:var(--red);}
 .footer-brand .logo .b{color:var(--blue);background:var(--off);padding:0 4px;}
 .footer-brand p{font-size:12px;opacity:.6;line-height:1.8;}
-.footer-col h4{
-  font-family:'Anton',sans-serif;font-size:13px;
-  letter-spacing:.15em;color:var(--gold);margin-bottom:16px;
-}
+.footer-col h4{font-family:'Anton',sans-serif;font-size:13px;letter-spacing:.15em;color:var(--gold);margin-bottom:16px;}
 .footer-col li{margin-bottom:10px;font-size:13px;}
 .footer-col a:hover{color:var(--red);}
-.footer-bottom{
-  max-width:var(--max);margin:0 auto;
-  padding-top:24px;border-top:1px solid #222;
-  display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
-  font-size:11px;opacity:.5;
-}
+.footer-bottom{max-width:var(--max);margin:0 auto;padding-top:24px;border-top:1px solid #222;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:11px;opacity:.5;}
 
 /* ===== Toast ===== */
 .toast{
-  position:fixed;bottom:32px;left:50%;
-  transform:translateX(-50%) translateY(120%);
-  background:var(--black);color:var(--off);
-  padding:14px 28px;font-weight:700;font-size:13px;
-  letter-spacing:.1em;border:1px solid var(--gold);
-  z-index:9999;transition:transform .25s;
+  position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(120%);
+  background:var(--black);color:var(--off);padding:14px 28px;font-weight:700;font-size:13px;
+  letter-spacing:.1em;border:1px solid var(--gold);z-index:9999;transition:transform .25s;
 }
 .toast.show{transform:translateX(-50%) translateY(0);}
 
 /* ===== レスポンシブ ===== */
 @media(max-width:1024px){
   .overview-grid{grid-template-columns:1fr;}
+  .card-grid.four,.card-grid.three{grid-template-columns:repeat(2,1fr);}
   .gacha-grid{grid-template-columns:repeat(2,1fr);}
-  .feature-row,.feature-row.reverse{
-    grid-template-columns:1fr;direction:ltr;gap:24px;
-  }
+  .feature-row,.feature-row.reverse{grid-template-columns:1fr;direction:ltr;gap:24px;}
   .feature-text h2{font-size:24px;}
+  .cosmo-grid{grid-template-columns:1fr;}
 }
 @media(max-width:768px){
   .nav-links{
-    position:fixed;top:72px;left:0;right:0;
-    background:var(--black);
-    flex-direction:column;gap:0;
-    padding:24px;
+    position:fixed;top:72px;left:0;right:0;background:var(--black);
+    flex-direction:column;gap:0;padding:24px;
     transform:translateY(-150%);transition:transform .25s;
   }
   .nav-links.open{transform:translateY(0);}
-  .nav-links a{
-    padding:16px 0;width:100%;
-    border-bottom:1px solid #333;
-  }
+  .nav-links a{padding:14px 0;width:100%;border-bottom:1px solid #333;}
   .nav-burger{display:flex;}
+  .nav-left{gap:16px;}
+  .nav-update{font-size:10px;padding:5px 10px;}
   .section-body{padding:60px 20px 80px;}
-  .card-grid,.money-grid,.rule-cols{grid-template-columns:1fr;}
+  .card-grid,.card-grid.four,.card-grid.three,.money-grid,.rule-cols{grid-template-columns:1fr;}
   .gacha-grid{grid-template-columns:1fr 1fr;}
-  .cmd-row{
-    grid-template-columns:1fr;gap:8px;padding:16px 20px;
-  }
+  .cmd-row{grid-template-columns:1fr;gap:8px;padding:16px 20px;}
   .cmd-copy{text-align:left;}
   .footer-inner{grid-template-columns:1fr;gap:32px;}
   .hero-logo{max-width:340px;}
   .address-box{flex-direction:column;align-items:stretch;}
+  .changelog{padding-left:32px;}
+  .changelog::before{left:8px;}
+  .update-item::before{left:-31px;}
+  .block-heading{font-size:22px;}
 }
 @media(max-width:480px){
-  .nav-inner{padding:0 20px;}
+  .nav-inner{padding:0 16px;}
   .gacha-grid{grid-template-columns:1fr;}
   .btn{padding:14px 24px;font-size:13px;}
+  .ranking-row{grid-template-columns:40px 1fr 70px;font-size:12px;}
 }
-
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;}
 }
@@ -483,13 +420,19 @@ footer{
 <!-- ========== NAV ========== -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#top" class="nav-logo"><span class="r">Ret</span>Bare<span class="b">Server</span></a>
+    <div class="nav-left">
+      <a href="#top" class="nav-logo"><span class="r">Ret</span>Bare<span class="b">Server</span></a>
+      <a href="#updates" class="nav-update">アップデート履歴</a>
+    </div>
     <button class="nav-burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#overview">概要</a></li>
       <li><a href="#pvp">PVP</a></li>
+      <li><a href="#duel">Duel</a></li>
       <li><a href="#economy">経済</a></li>
       <li><a href="#gacha">ガチャ</a></li>
+      <li><a href="#cosmetics">コスメ</a></li>
+      <li><a href="#trade">トレード</a></li>
       <li><a href="#commands">コマンド</a></li>
       <li><a href="#rules">ルール</a></li>
       <li><a href="#faq">FAQ</a></li>
@@ -501,12 +444,12 @@ footer{
 <!-- ========== HERO ========== -->
 <header class="hero" id="top">
   <div class="hero-inner">
-    <img class="hero-logo" src="Logo_wordmark_design_reading_EXACTLY_RetBareServe.png" alt="RetBareServer">
+    <img class="hero-logo" src="Logo_wordmark_design_reading_EXACTLY_RetBareServe-removebg-preview.png" alt="RetBareServer">
     <h1>PVPもサバイバルも、ここで完結する。</h1>
-    <p class="sub">BedWars、SkyWars、サバイバル、OneBlock。<br>独自経済システムと5種のガチャ、80種以上のカスタムエンチャントを搭載した<br>Minecraft Java Edition 1.21.1 マルチプレイサーバー</p>
+    <p class="sub">BedWars・SkyWars・Duel・サバイバル・OneBlock。<br>独自経済システム、5種のガチャ、80種以上のカスタムエンチャント、<br>Ultra Cosmetics搭載のMinecraft Java Edition 1.21.1 マルチプレイサーバー</p>
     <div class="address-box">
       <span class="label">SERVER</span>
-      <span class="addr" id="addrText">110.67.56.168:25565</span>
+      <span class="addr">110.67.56.168:25565</span>
       <button class="copy" data-copy="110.67.56.168:25565">COPY</button>
     </div>
     <div class="cta-row">
@@ -519,22 +462,22 @@ footer{
 <!-- ========== OVERVIEW ========== -->
 <section id="overview" class="section-light">
   <div class="section-body">
-    <p class="lead">RetBareServerは、Minecraft Java Edition 1.21.1で動作するマルチプレイサーバーです。PVPとサバイバルの両方を1つのサーバーで楽しめるよう設計されており、BedWars、SkyWars、サバイバル、OneBlockの4つの主要コンテンツに加え、独自の経済システム、5種類のガチャ、プレイヤー間オークション、SmartSpawnerによる自動ファーム、80種以上のカスタムエンチャントを搭載しています。</p>
+    <p class="lead">RetBareServerは、Minecraft Java Edition 1.21.1で動作するマルチプレイサーバーです。BedWars・SkyWars・Duel・サバイバル・OneBlockなど多彩なコンテンツに加え、独自経済、5種のガチャ、Ultra Cosmetics、プレイヤートレード、80種以上のカスタムエンチャント、SmartSpawnerによる自動ファームを搭載。N高グループ生徒コミュニティを中心に運営されています。</p>
     <div class="overview-grid">
       <div class="overview-card">
         <div class="num">01</div>
         <h3>PVPコンテンツ</h3>
-        <p>BedWars・SkyWars・PracticeBot。サーバー独自のアイテムやKITが多数。勝てば報酬も大きい。</p>
+        <p>BedWars・SkyWars・Duel(8種目)。サーバー独自のアイテム・KITが多数。勝てば即報酬。</p>
       </div>
       <div class="overview-card">
         <div class="num">02</div>
         <h3>サバイバル経済</h3>
-        <p>素材売却・オークション・PVP報酬・ログインボーナス。稼ぐ手段は4種類。Vault基盤で安定運用。</p>
+        <p>素材売却・オークション・PVP報酬・ログインボーナス・トレード。Vault基盤で安定運用。</p>
       </div>
       <div class="overview-card">
         <div class="num">03</div>
         <h3>独自システム</h3>
-        <p>SmartSpawner、MobCoin、リカバリートーテム、3×3ツルハシ。バニラを超えた快適さ。</p>
+        <p>SmartSpawner、MobCoin、Ultra Cosmetics、リカバリートーテム、3×3ツルハシ。</p>
       </div>
     </div>
   </div>
@@ -545,14 +488,14 @@ footer{
   <div class="section-header"><img src="Section_header_banner_2400x600_dimensions_41_asp_1.png" alt="PVPコンテンツ"></div>
   <div class="section-dark">
     <div class="section-body">
-      <p class="lead">RetBareServerのPVPは、サーバー独自のアイテムとKITによって、他のサーバーでは味わえない戦闘体験を提供します。勝てば即座にサバイバルで使える円が手に入るため、PVPをやりこむほど経済的にも有利になります。</p>
+      <p class="lead">RetBareServerのPVPは、サーバー独自のアイテムとKITによって他では味わえない戦闘体験を提供します。勝てば即座にサバイバルで使える円が手に入るため、PVPをやりこむほど経済的にも有利になります。</p>
       <div class="card-grid">
         <article class="content-card">
           <img src="Square_card_1200x1200_dimensions_TOP_70_of_card.png" alt="BedWars">
           <div class="body">
             <span class="tag">CHAMP MODE</span>
             <h3>BedWars</h3>
-            <p>チームのベッドを守りながら相手のベッドを破壊するチーム対抗戦。TNT羊などサーバー独自のアイテムが多数登場します。勝利で1,028円、ベッド破壊で1,000円の報酬を獲得。</p>
+            <p>チームのベッドを守りながら相手のベッドを破壊するチーム対抗戦。TNT羊などサーバー独自のアイテムが多数登場。勝利で1,028円、ベッド破壊で1,000円の報酬を獲得。新マップ「BIG」は最大64人対応。</p>
           </div>
         </article>
         <article class="content-card">
@@ -560,7 +503,7 @@ footer{
           <div class="body">
             <span class="tag">BATTLE ROYALE</span>
             <h3>SkyWars</h3>
-            <p>空島から始まるバトルロイヤル形式のPVP。最後の1人が勝者となります。盲目の剣などサーバー独自のKITが豊富で、自分のプレイスタイルに合わせた構成で参戦できます。</p>
+            <p>空島から始まるバトルロイヤル形式のPVP。最後の1人が勝者。サーバー独自のKIT制度が豊富で、<code>/ss</code> から1個5,000円で新キットを購入できます。日本語化済み。</p>
           </div>
         </article>
       </div>
@@ -570,7 +513,7 @@ footer{
           <div class="body">
             <span class="tag">SOLO MODE</span>
             <h3>OneBlock</h3>
-            <p>足元のたった1ブロックから始まる世界。ブロックを壊すたびに新しいブロックが出現し、集めた素材で拠点を拡大していきます。/rmenuから参加可能。</p>
+            <p>足元のたった1ブロックから始まる世界。ブロックを壊すたびに新しいブロックが出現し、集めた素材で拠点を拡大していきます。<code>/rmenu</code> から参加可能。</p>
           </div>
         </article>
         <article class="content-card">
@@ -578,8 +521,58 @@ footer{
           <div class="body">
             <span class="tag">MAIN MODE</span>
             <h3>サバイバル</h3>
-            <p>通常のMinecraftサバイバルに、独自経済・ガチャ・オークション・MobCoin・SmartSpawnerなどを加えたメインモード。少し強いカスタムモブも出現します。</p>
+            <p>通常のMinecraftサバイバルに、独自経済・ガチャ・オークション・MobCoin・SmartSpawnerを加えたメインモード。ネザー・エンド開放済み。</p>
           </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== DUEL ========== -->
+<section id="duel">
+  <div class="section-header"><img src="バナー_デュエル_Duel_1v1_Arena.png" alt="Duel 1v1 Arena"></div>
+  <div class="section-dark">
+    <div class="section-body">
+      <p class="lead">RetBareServer専用のDuelシステム。8種目のPVPで1vs1の真剣勝負ができます。マッチング形式で相手を見つけ、勝敗を決定。UHC FFA以外はすべて1vs1、UHC FFAのみ乱闘形式です。</p>
+
+      <div class="duel-info-box">
+        <h3>参加方法</h3>
+        <p><code>/warp duel</code> でDuelロビーへ移動 → <code>/duel</code> でGUIを開く → 種目を選んでマッチング開始。すべての操作はGUIで完結します。アリーナからの退出もGUIから可能。Duel日本語化済み。</p>
+      </div>
+
+      <div class="card-grid four">
+        <article class="content-card">
+          <img src="カード_UHC_Ultra_Hardcore.png" alt="UHC">
+          <div class="body"><span class="tag">1V1</span><h3>UHC</h3><p>Ultra Hardcore。自然回復なしの真剣勝負。相手を倒したら勝ち。</p></div>
+        </article>
+        <article class="content-card">
+          <img src="カード_UHC_FFA_Free_For_All.png" alt="UHC FFA">
+          <div class="body"><span class="tag">FFA</span><h3>UHC FFA</h3><p>乱闘形式のUHC。複数プレイヤーが同時に戦い、最後の1人を目指す。</p></div>
+        </article>
+        <article class="content-card">
+          <img src="カード_ソード_Sword.png" alt="Sword">
+          <div class="body"><span class="tag">1V1</span><h3>Sword</h3><p>剣のみの純粋なPVP。腕前が直接結果に出る基本種目。</p></div>
+        </article>
+        <article class="content-card">
+          <img src="カード_アックス_Axe.png" alt="Axe">
+          <div class="body"><span class="tag">1V1</span><h3>Axe</h3><p>斧での重い一撃を交える戦い。クリティカルの読み合いが鍵。</p></div>
+        </article>
+        <article class="content-card">
+          <img src="カード_ポット_Pot_PVP.png" alt="Pot">
+          <div class="body"><span class="tag">1V1</span><h3>Pot</h3><p>回復ポーションを投げながら戦うPot PVP。立ち回りと操作精度が問われる。</p></div>
+        </article>
+        <article class="content-card">
+          <img src="カード_スモウ_Sumo.png" alt="Sumo">
+          <div class="body"><span class="tag">1V1</span><h3>Sumo</h3><p>狭い足場で相手を場外に落とせば勝ち。Retbare 3Testで追加。</p></div>
+        </article>
+        <article class="content-card">
+          <img src="カード_メイス_Mace.png" alt="Mace">
+          <div class="body"><span class="tag">1V1</span><h3>Mace</h3><p>メイス（鎚）の落下攻撃を活用する新感覚の1vs1。</p></div>
+        </article>
+        <article class="content-card">
+          <img src="カード_ノーデバフ_No_Debuff.png" alt="NoDebuff">
+          <div class="body"><span class="tag">1V1</span><h3>NoDebuff</h3><p>デバフなしのポット戦。純粋なPotスキルを競う種目。</p></div>
         </article>
       </div>
     </div>
@@ -591,7 +584,7 @@ footer{
   <div class="section-header"><img src="Section_header_banner_2400x600_dimensions_41_asp_3.png" alt="経済システム"></div>
   <div class="section-light">
     <div class="section-body">
-      <p class="lead">通貨単位は「円」。Vaultベースの経済基盤で運用されており、所持金は <code style="font-family:'JetBrains Mono',monospace;background:var(--black);color:var(--off);padding:2px 8px;">/money</code> コマンドで確認できます。お金の稼ぎ方は4つ、使い道はショップ・5種のガチャ・オークションと豊富です。</p>
+      <p class="lead">通貨単位は「円」。Vaultベースの経済基盤で運用されており、所持金は <code>/money</code> で確認できます。お金の稼ぎ方は4つ、使い道はショップ・5種のガチャ・オークション・プレイヤートレードと豊富です。</p>
       <div class="money-grid">
         <div class="money-item">
           <div class="step">METHOD 01</div>
@@ -601,12 +594,12 @@ footer{
         <div class="money-item">
           <div class="step">METHOD 02</div>
           <h4>オークションで売る</h4>
-          <p><code>/ah</code> で出品。他プレイヤーに購入されたら売値が手に入ります。一定時間で期限切れになりますが、回収可能。</p>
+          <p><code>/ah</code> で出品。他プレイヤーに購入されたら売値が手に入ります。一定時間で期限切れになりますが、回収可能です。</p>
         </div>
         <div class="money-item">
           <div class="step">METHOD 03</div>
           <h4>BedWarsで稼ぐ</h4>
-          <p>勝利で1,028円、ベッド破壊で1,000円のボーナス。PvPで遊びながら効率よく稼げます。</p>
+          <p>勝利で1,028円、ベッド破壊で1,000円のボーナス。PvPで遊びながら効率よく稼げます。月間ランキング上位には豪華報酬も。</p>
         </div>
         <div class="money-item">
           <div class="step">METHOD 04</div>
@@ -625,46 +618,26 @@ footer{
     <div class="section-body">
       <p class="lead">RetBareServerには5種類のガチャが存在し、それぞれ異なる報酬が排出されます。マジック・エンチャントガチャは直接開封、ダイヤ・ネザライト・スポナーガチャはキーで開封する形式です。</p>
       <div class="gacha-banner">
-        <img src="Five_gacha_crate_icons_arranged_in_a_horizontal_ro.png" alt="ガチャ5種">
+        <img src="Five_gacha_crate_icons_arranged_in_a_horizontal_ro-removebg-preview.png" alt="ガチャ5種">
       </div>
       <div class="gacha-grid">
-        <div class="gacha-card">
-          <h4>ダイヤ</h4>
-          <div class="price">¥3,000</div>
-          <p>ダイヤモンド装備系がランダムで排出。馬鎧も。</p>
-        </div>
-        <div class="gacha-card">
-          <h4>ネザライト</h4>
-          <div class="price">¥10,000</div>
-          <p>ネザライト装備系がランダム排出。最上位ガチャ。</p>
-        </div>
-        <div class="gacha-card">
-          <h4>マジック</h4>
-          <div class="price">¥5,000</div>
-          <p>3×3ツルハシ等の独自アイテム。ハズレでもトーテム。</p>
-        </div>
-        <div class="gacha-card">
-          <h4>エンチャント</h4>
-          <div class="price">¥5,000</div>
-          <p>サーバー独自カスタムエンチャント。全て日本語説明付き。</p>
-        </div>
-        <div class="gacha-card">
-          <h4>スポナー</h4>
-          <div class="price">¥12,500</div>
-          <p>SmartSpawnerが排出。自動ファームの源。</p>
-        </div>
+        <div class="gacha-card"><h4>ダイヤ</h4><div class="price">¥3,000</div><p>ダイヤモンド装備系がランダム排出。馬鎧も。</p></div>
+        <div class="gacha-card"><h4>ネザライト</h4><div class="price">¥10,000</div><p>ネザライト装備系がランダム排出。最上位ガチャ。</p></div>
+        <div class="gacha-card"><h4>マジック</h4><div class="price">¥5,000</div><p>3×3ツルハシ等の独自アイテム。ハズレでもトーテム。</p></div>
+        <div class="gacha-card"><h4>エンチャント</h4><div class="price">¥5,000</div><p>サーバー独自カスタムエンチャント。全て日本語説明付き。</p></div>
+        <div class="gacha-card"><h4>スポナー</h4><div class="price">¥12,500</div><p>SmartSpawnerが排出。自動ファームの源。</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== FEATURES ========== -->
+<!-- ========== UNIQUE FEATURES (SmartSpawner / MobCoin / Cosmetics / Enchant) ========== -->
 <section id="features" class="section-light">
   <div class="section-body">
     <div class="feature-row">
       <img src="Feature_illustration_1600x900_dimensions_Three-qu.png" alt="SmartSpawner">
       <div class="feature-text">
-        <h3>UNIQUE FEATURE 01</h3>
+        <p class="sub-heading">UNIQUE FEATURE 01</p>
         <h2>SmartSpawner<br>放置で素材が貯まる最強自動ファーム</h2>
         <p>通常のスポナーの超強化版。実際にモブをスポーンさせず、ドロップアイテムとXPを仮想的に自動生成します。サーバーにAI処理の負荷がかからず、ラグが発生しません。右クリックでGUIを開き、溜まったアイテムを一括回収。ホッパーで自動搬出も可能。スポナー同士のスタックで効率アップ。</p>
       </div>
@@ -672,17 +645,183 @@ footer{
     <div class="feature-row reverse">
       <img src="Feature_illustration_1600x900_dimensions_Center_c.png" alt="MobCoin">
       <div class="feature-text">
-        <h3>UNIQUE FEATURE 02</h3>
+        <p class="sub-heading">UNIQUE FEATURE 02</p>
         <h2>MobCoin<br>モブを倒して貯める特殊通貨</h2>
-        <p>通常の円とは別系統の通貨。モブを倒すと獲得でき、専用ショップでSmartSpawnerなどの特殊アイテムと交換できます。<code style="font-family:'JetBrains Mono',monospace;background:var(--black);color:var(--off);padding:2px 6px;">/mobcoins</code> で残高確認、<code style="font-family:'JetBrains Mono',monospace;background:var(--black);color:var(--off);padding:2px 6px;">/mobcoins shop</code> でショップを開きます。プレイヤー間の送金、TOP10ランキング表示にも対応。</p>
+        <p>通常の円とは別系統の通貨。モブを倒すと獲得でき、専用ショップでSmartSpawnerなどの特殊アイテムと交換できます。<code>/mobcoins</code> で残高確認、<code>/mobcoins shop</code> でショップを開きます。プレイヤー間の送金、TOP10ランキング表示にも対応。</p>
       </div>
     </div>
     <div class="feature-row">
       <img src="Feature_illustration_1600x900_dimensions_Open_enc.png" alt="カスタムエンチャント">
       <div class="feature-text">
-        <h3>UNIQUE FEATURE 03</h3>
+        <p class="sub-heading">UNIQUE FEATURE 03</p>
         <h2>カスタムエンチャント<br>80種以上のバニラライク拡張</h2>
         <p>矢がエンダーパールに変わる弓用エンチャント、雷を落とすエンチャント、ドラゴンの炎、TNT射出、ホバー効果、一括採掘など80種以上。すべて日本語説明付きで、初見でも内容がわかります。エンチャントガチャから入手。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== COSMETICS ========== -->
+<section id="cosmetics">
+  <div class="section-header"><img src="バナー_コスメティック_Cosmetics.png" alt="コスメティック"></div>
+  <div class="section-dark">
+    <div class="section-body">
+      <p class="lead">サーバーロビーで使えるコスメティック機能。Ultra Cosmeticsプラグインを採用しており、ガジェット・ペット・マウント・モーフ・ハット・エモートなど膨大なカテゴリのコスメが用意されています。Duelアリーナ内では使用できません。</p>
+
+      <div class="feature-row" style="margin-bottom:64px;">
+        <img src="特集_コスメティック_Ultra_Cosmetics_EnderDragon.png" alt="Ultra Cosmetics">
+        <div class="feature-text">
+          <p class="sub-heading">UNIQUE FEATURE 04</p>
+          <h2>Ultra Cosmetics<br>ロビーが自分だけの遊び場に</h2>
+          <p>エンダードラゴンに乗って空を駆けたり、TNTを投げまくったり、ペットを連れ歩いたり、別のモブに変身したり。コスメ専用のガチャがあり、<strong>Retbare通貨2,000円</strong>で1回引けます。コスメの装備・解除はすべて <code>/uc menu</code> から行えます。</p>
+          <p>装備中のコスメをすべて解除するには <code>/uc clear</code>、モーフ変身中の自分の姿を確認するには <code>/uc selfview</code> を使用してください。</p>
+        </div>
+      </div>
+
+      <img src="グリッド_ガジェット_ペット_マウント_エモート.png" alt="コスメ4カテゴリ" style="width:100%;margin-bottom:48px;border:1px solid #333;">
+
+      <div class="cosmo-grid">
+        <div class="cosmo-block">
+          <h4>ガジェット <span class="count">8</span></h4>
+          <div class="en">GADGETS</div>
+          <div class="cosmo-list">
+            <span>Bat Blaster</span><span>Paintball Gun</span><span>TNT</span><span>FunGun</span>
+            <span>Firework</span><span>Freeze Cannon</span><span>Snowball</span><span>Trampoline</span>
+          </div>
+        </div>
+
+        <div class="cosmo-block">
+          <h4>ペット <span class="count">21</span></h4>
+          <div class="en">PETS</div>
+          <div class="cosmo-list">
+            <span>Piggy</span><span>Cow</span><span>Dog</span><span>Chick</span><span>Snowman</span>
+            <span>Villager</span><span>Bat</span><span>Sheep</span><span>Creeper</span><span>Skeleton</span>
+            <span>Zombie</span><span>Spider</span><span>Horse</span><span>Piglin</span><span>Kitty</span>
+            <span>Pillager</span><span>Cod</span><span>Salmon</span><span>Drowned</span><span>Donkey</span><span>Husk</span>
+          </div>
+        </div>
+
+        <div class="cosmo-block">
+          <h4>マウント <span class="count">6</span></h4>
+          <div class="en">MOUNTS</div>
+          <div class="cosmo-list">
+            <span>Snake</span><span>Horse</span><span>Donkey</span><span>Mule</span><span>Pig</span><span>Strider</span>
+          </div>
+        </div>
+
+        <div class="cosmo-block">
+          <h4>モーフ <span class="count">23</span></h4>
+          <div class="en">MORPHS</div>
+          <div class="cosmo-list">
+            <span>Bat</span><span>Chicken</span><span>Pig</span><span>Slime</span><span>Creeper</span>
+            <span>Cow</span><span>Villager</span><span>Sheep</span><span>Wolf</span><span>Iron Golem</span>
+            <span>Skeleton</span><span>Zombie</span><span>Squid</span><span>Horse</span><span>Piglin</span>
+            <span>Cat</span><span>Ocelot</span><span>Pillager</span><span>Cod</span><span>Drowned</span>
+            <span>Pufferfish</span><span>Evoker</span><span>Donkey</span>
+          </div>
+        </div>
+
+        <div class="cosmo-block">
+          <h4>パーティクル効果 <span class="count">6</span></h4>
+          <div class="en">PARTICLE EFFECTS</div>
+          <div class="cosmo-list">
+            <span>Enchanted</span><span>Superhero</span><span>Fire Waves</span>
+            <span>Shadow Footprints</span><span>Notes</span><span>Hearts</span>
+          </div>
+        </div>
+
+        <div class="cosmo-block">
+          <h4>飛び道具エフェクト <span class="count">12</span></h4>
+          <div class="en">PROJECTILE EFFECTS</div>
+          <div class="cosmo-list">
+            <span>Redstone</span><span>Flame</span><span>Water</span><span>Emerald</span>
+            <span>Lava</span><span>Snow</span><span>Crit</span><span>Magic Crit</span>
+            <span>Smoke</span><span>Squid Ink</span><span>Snowflake</span><span>Scrape</span>
+          </div>
+        </div>
+
+        <div class="cosmo-block">
+          <h4>エモート <span class="count">3</span></h4>
+          <div class="en">EMOTES</div>
+          <div class="cosmo-list">
+            <span>Cry</span><span>Angry</span><span>Happy</span>
+          </div>
+        </div>
+
+        <div class="cosmo-block">
+          <h4>デスエフェクト <span class="count">1</span></h4>
+          <div class="en">DEATH EFFECTS</div>
+          <div class="cosmo-list">
+            <span>Explosion</span>
+          </div>
+        </div>
+
+        <div class="cosmo-block">
+          <h4>スーツ <span class="count">2</span></h4>
+          <div class="en">SUITS</div>
+          <div class="cosmo-list">
+            <span>Diamond</span><span>Santa</span>
+          </div>
+        </div>
+
+        <div class="cosmo-block" style="grid-column:1/-1;">
+          <h4>ハット <span class="count">76</span></h4>
+          <div class="en">HATS — 表情・動物・食べ物・アルファベットなど豊富なラインナップ</div>
+          <div class="cosmo-list">
+            <span>Scared</span><span>Sad</span><span>Cool</span><span>Crying</span><span>Smile</span>
+            <span>Iron</span><span>Music</span><span>Squid</span><span>Chicken</span><span>Pig</span>
+            <span>Cow</span><span>Mooshroom</span><span>Sheep</span><span>Slime</span><span>Creeper</span>
+            <span>Skeleton</span><span>Zombie</span><span>Drowned</span><span>Strider</span><span>Ghast</span>
+            <span>Witch</span><span>Librarian Villager</span><span>Ocelot</span><span>Axolotl Pink</span>
+            <span>Clownfish</span><span>Black Cat</span><span>Bat</span><span>Glare</span><span>Rana</span>
+            <span>MCD Steve</span><span>MCD Alex</span><span>Chest</span><span>Skull</span><span>Scary Clown</span>
+            <span>Snowman</span><span>Red Crewmate</span><span>Blue Crewmate</span><span>Green Crewmate</span>
+            <span>Yellow Crewmate</span><span>Frog Prince</span><span>Goblin</span><span>Bread</span>
+            <span>Cheese</span><span>Pancake</span><span>Chocolate</span><span>Apple</span><span>Melon</span>
+            <span>Coconut</span><span>Taco</span><span>Fries</span><span>Chocolate Donut</span>
+            <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span>
+            <span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span>
+            <span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span>
+            <span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span>
+            <span>Y</span><span>Z</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gacha-banner" style="margin-top:64px;">
+        <img src="ガチャ_Ultra_Cosmetics_2000円.png" alt="コスメガチャ" style="max-width:340px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TRADE ========== -->
+<section id="trade">
+  <div class="section-header"><img src="バナー_トレード_Trade.png" alt="トレード"></div>
+  <div class="section-light">
+    <div class="section-body">
+      <p class="lead">プレイヤー間で安全にアイテムを交換できるトレードシステム。最新のアップデートで追加された新機能で、オークションを介さず1対1で直接取引できます。トクトレ（特トレ）で大富豪を目指せます。</p>
+
+      <div class="feature-row" style="margin-bottom:0;">
+        <img src="特集_プレイヤートレード_Player_Trading.png" alt="Player Trading">
+        <div class="feature-text">
+          <p class="sub-heading">NEW FEATURE</p>
+          <h2>プレイヤートレード<br>直接交換で大富豪を狙え</h2>
+          <p>相手の名前を指定してトレード画面を開き、お互いにアイテムをセットして承認すれば取引完了。詐欺やすり替えの心配がない安全な公式機能です。</p>
+
+          <div class="trade-cmd-row">
+            <div class="trade-cmd-card">
+              <span class="cmd">/trade &lt;名前&gt;</span>
+              <h4>通常トレード</h4>
+              <p>相手にトレードリクエストを送信。相手が承認するとトレード画面が開き、両者がアイテムをセット・確認して完了します。</p>
+            </div>
+            <div class="trade-cmd-card">
+              <span class="cmd">/trade aspect &lt;名前&gt;</span>
+              <h4>アスペクトトレード</h4>
+              <p>拡張機能付きのトレード。より詳細な取引が可能です。</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -693,20 +832,49 @@ footer{
   <div class="section-header"><img src="Section_header_banner_2400x600_dimensions_41_asp_5.png" alt="コマンド一覧"></div>
   <div class="section-dark">
     <div class="section-body">
-      <p class="lead">よく使うコマンドを抜粋しています。コピーボタンでクリップボードにコピーできます。すべてのワールド移動は <code style="font-family:'JetBrains Mono',monospace;background:var(--off);color:var(--black);padding:2px 8px;">/rmenu</code> から行います。</p>
+      <p class="lead">よく使うコマンドを抜粋しています。COPYボタンでクリップボードにコピーできます。すべてのワールド移動は <code>/rmenu</code> から行います。</p>
+
+      <p class="cmd-group-title">移動 / 拠点</p>
       <div class="cmd-list">
-        <div class="cmd-row"><span class="cmd-name">/rmenu</span><span class="cmd-desc">統合メニューを開く（各ワールドへ移動）</span><button class="cmd-copy" data-copy="/rmenu">COPY</button></div>
-        <div class="cmd-row"><span class="cmd-name">/money</span><span class="cmd-desc">現在の所持金（円）を確認</span><button class="cmd-copy" data-copy="/money">COPY</button></div>
-        <div class="cmd-row"><span class="cmd-name">/shop</span><span class="cmd-desc">ショップGUIを開く</span><button class="cmd-copy" data-copy="/shop">COPY</button></div>
-        <div class="cmd-row"><span class="cmd-name">/ah</span><span class="cmd-desc">オークション画面を開く</span><button class="cmd-copy" data-copy="/ah">COPY</button></div>
+        <div class="cmd-row"><span class="cmd-name">/rmenu</span><span class="cmd-desc">統合メニュー（各ワールドへ移動）</span><button class="cmd-copy" data-copy="/rmenu">COPY</button></div>
         <div class="cmd-row"><span class="cmd-name">/sethome</span><span class="cmd-desc">現在地をホームとして登録</span><button class="cmd-copy" data-copy="/sethome">COPY</button></div>
         <div class="cmd-row"><span class="cmd-name">/home</span><span class="cmd-desc">登録したホームへテレポート</span><button class="cmd-copy" data-copy="/home">COPY</button></div>
         <div class="cmd-row"><span class="cmd-name">/tpa &lt;名&gt;</span><span class="cmd-desc">プレイヤーにテレポートリクエスト</span><button class="cmd-copy" data-copy="/tpa ">COPY</button></div>
         <div class="cmd-row"><span class="cmd-name">/back</span><span class="cmd-desc">直前の場所/死亡地点に戻る</span><button class="cmd-copy" data-copy="/back">COPY</button></div>
-        <div class="cmd-row"><span class="cmd-name">/mobcoins</span><span class="cmd-desc">MobCoin残高を表示</span><button class="cmd-copy" data-copy="/mobcoins">COPY</button></div>
-        <div class="cmd-row"><span class="cmd-name">/ec</span><span class="cmd-desc">エンダーチェストを開く</span><button class="cmd-copy" data-copy="/ec">COPY</button></div>
-        <div class="cmd-row"><span class="cmd-name">/craft</span><span class="cmd-desc">作業台をどこでも開く</span><button class="cmd-copy" data-copy="/craft">COPY</button></div>
+        <div class="cmd-row"><span class="cmd-name">/spawn</span><span class="cmd-desc">スポーン地点に戻る</span><button class="cmd-copy" data-copy="/spawn">COPY</button></div>
+        <div class="cmd-row"><span class="cmd-name">/warp duel</span><span class="cmd-desc">Duelロビーへ移動</span><button class="cmd-copy" data-copy="/warp duel">COPY</button></div>
+      </div>
+
+      <p class="cmd-group-title">経済 / 取引</p>
+      <div class="cmd-list">
+        <div class="cmd-row"><span class="cmd-name">/money</span><span class="cmd-desc">現在の所持金（円）を確認</span><button class="cmd-copy" data-copy="/money">COPY</button></div>
         <div class="cmd-row"><span class="cmd-name">/pay &lt;名&gt; &lt;額&gt;</span><span class="cmd-desc">他プレイヤーに送金</span><button class="cmd-copy" data-copy="/pay ">COPY</button></div>
+        <div class="cmd-row"><span class="cmd-name">/shop</span><span class="cmd-desc">ショップGUIを開く</span><button class="cmd-copy" data-copy="/shop">COPY</button></div>
+        <div class="cmd-row"><span class="cmd-name">/ah</span><span class="cmd-desc">オークション画面を開く</span><button class="cmd-copy" data-copy="/ah">COPY</button></div>
+        <div class="cmd-row"><span class="cmd-name">/trade &lt;名&gt;</span><span class="cmd-desc">プレイヤートレードを開始</span><button class="cmd-copy" data-copy="/trade ">COPY</button></div>
+        <div class="cmd-row"><span class="cmd-name">/trade aspect &lt;名&gt;</span><span class="cmd-desc">アスペクトトレードを開始</span><button class="cmd-copy" data-copy="/trade aspect ">COPY</button></div>
+      </div>
+
+      <p class="cmd-group-title">PVP / Duel</p>
+      <div class="cmd-list">
+        <div class="cmd-row"><span class="cmd-name">/duel</span><span class="cmd-desc">DuelのGUIを開く（種目選択・マッチング）</span><button class="cmd-copy" data-copy="/duel">COPY</button></div>
+        <div class="cmd-row"><span class="cmd-name">/ss</span><span class="cmd-desc">Skywars Shop（キット購入）</span><button class="cmd-copy" data-copy="/ss">COPY</button></div>
+      </div>
+
+      <p class="cmd-group-title">MobCoin / コスメ</p>
+      <div class="cmd-list">
+        <div class="cmd-row"><span class="cmd-name">/mobcoins</span><span class="cmd-desc">MobCoin残高を表示</span><button class="cmd-copy" data-copy="/mobcoins">COPY</button></div>
+        <div class="cmd-row"><span class="cmd-name">/mobcoins shop</span><span class="cmd-desc">MobCoinショップを開く</span><button class="cmd-copy" data-copy="/mobcoins shop">COPY</button></div>
+        <div class="cmd-row"><span class="cmd-name">/mobcoins top</span><span class="cmd-desc">MobCoinランキングTOP10</span><button class="cmd-copy" data-copy="/mobcoins top">COPY</button></div>
+        <div class="cmd-row"><span class="cmd-name">/uc menu</span><span class="cmd-desc">コスメティックメニューを開く</span><button class="cmd-copy" data-copy="/uc menu">COPY</button></div>
+        <div class="cmd-row"><span class="cmd-name">/uc clear</span><span class="cmd-desc">装備中のコスメを全解除</span><button class="cmd-copy" data-copy="/uc clear">COPY</button></div>
+        <div class="cmd-row"><span class="cmd-name">/uc selfview</span><span class="cmd-desc">モーフ中の自分の姿を確認</span><button class="cmd-copy" data-copy="/uc selfview">COPY</button></div>
+      </div>
+
+      <p class="cmd-group-title">便利</p>
+      <div class="cmd-list">
+        <div class="cmd-row"><span class="cmd-name">/craft</span><span class="cmd-desc">作業台をどこでも開く</span><button class="cmd-copy" data-copy="/craft">COPY</button></div>
+        <div class="cmd-row"><span class="cmd-name">/ec</span><span class="cmd-desc">エンダーチェストを開く</span><button class="cmd-copy" data-copy="/ec">COPY</button></div>
       </div>
     </div>
   </div>
@@ -742,23 +910,157 @@ footer{
   </div>
 </section>
 
+<!-- ========== UPDATES / CHANGELOG ========== -->
+<section id="updates">
+  <div class="section-header"><img src="バナー_アップデート履歴_Changelog.png" alt="アップデート履歴"></div>
+  <div class="section-dark">
+    <div class="section-body">
+      <p class="lead">RetBareServerは継続的にアップデートを行っています。新機能の追加、不具合修正、イベントなどの公式アナウンスをここにまとめています。</p>
+
+      <img src="特集_サーバーアップデート_Server_Updates.png" alt="Server Updates" style="width:100%;margin-bottom:48px;border:1px solid #333;">
+
+      <div class="changelog">
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/05/20</span><span class="badge badge-feat">NEW FEATURE</span></div>
+          <h4>トレード機能を追加</h4>
+          <p><code>/trade</code> でプレイヤー間トレードができるようになりました。特トレで大富豪を目指しましょう。</p>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/05/19</span><span class="badge badge-fix">FIX</span><span class="badge badge-feat">FEATURE</span></div>
+          <h4>サバイバルの問題を全解決 / エンド解放</h4>
+          <ul>
+            <li>ネザーが同期されない問題を解決</li>
+            <li>ネザーから戻った時にワールドが違う問題を解決</li>
+            <li>エンドワールドが正式に解放</li>
+          </ul>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/05/14</span><span class="badge badge-info">INFO</span></div>
+          <h4>Retbare 3 まであと少し</h4>
+          <p>大型アップデート「Retbare 3」のリリースが近づいています。ご期待ください。</p>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/05/09</span><span class="badge badge-feat">NEW MODE</span></div>
+          <h4>NoDebuff を追加</h4>
+          <p>新しいDuel種目「NoDebuff（ノーデバフ）」を追加しました。Duel画面から遊べます。</p>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/05/09</span><span class="badge badge-feat">FEATURE</span></div>
+          <h4>Discord連携: ローマ字読み機能を追加</h4>
+          <p>これまで「ohayou」とローマ字で入力していたチャットが、これからは「ohayou(おはよう)」のように日本語表記併記で表示されます。Discord連携の長年の課題が解決しました。</p>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/05/09</span><span class="badge badge-feat">NEW MAP</span></div>
+          <h4>BedWars 新マップを追加</h4>
+          <p>BedWarsに新しいマップが追加されました。</p>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/05/06</span><span class="badge badge-feat">i18n</span></div>
+          <h4>Skywars を日本語化</h4>
+          <p>SkywarsのUI表示を日本語に対応しました。</p>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/05/05</span><span class="badge badge-feat">MAJOR UPDATE</span></div>
+          <h4>Retbare 3 Test アップデート</h4>
+          <p>以下の要素を追加・改善しました。</p>
+          <ul>
+            <li><code>/rmenu</code> から Skywars 関連メニュー（参加・Shop・Lobby）を選択できるように</li>
+            <li>新ミニゲーム「Pillars of Fortune」を追加（<code>/rmenu</code> から参加可能）</li>
+            <li>新Duel種目「Sumo」を追加</li>
+            <li><code>/duel</code> からアリーナを簡単に退出できるように改善</li>
+            <li>Duel の表示を日本語化</li>
+            <li>一部のエンチャント名が英語表示される問題を修正</li>
+            <li>Skywars KitMenu の問題を修正</li>
+          </ul>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/05/05</span><span class="badge badge-feat">FEATURE</span></div>
+          <h4>Skywars 新キットを追加</h4>
+          <p>Skywarsに新キットが追加されました。<code>/ss</code> から1個5,000円（ゲーム内仮想通貨）で購入できます。</p>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/05/04</span><span class="badge badge-feat">NEW MAP</span></div>
+          <h4>BedWars 新マップ「BIG」を追加</h4>
+          <p>最大64人プレイ可能な巨大マップ「BIG」がBedWarsに追加されました。今後のEVENTなどで使用されます。</p>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/05/03</span><span class="badge badge-event">EVENT</span></div>
+          <h4>4月度 BedWars ランキング発表</h4>
+          <div class="ranking">
+            <div class="ranking-row"><span class="rank">1位</span><span>おこーめたろう / MRF_4922 &amp; Zzz067_</span><span class="pt">1,680pt</span></div>
+            <div class="ranking-row"><span class="rank">2位</span><span>コピ / ConsumedPoppy16</span><span class="pt">405pt</span></div>
+            <div class="ranking-row"><span class="rank">3位</span><span>kemi / 1ztRealkemi</span><span class="pt">385pt</span></div>
+            <div class="ranking-row"><span class="rank">4位</span><span>ウェルダンになった野菜 / 386ede</span><span class="pt">340pt</span></div>
+            <div class="ranking-row"><span class="rank">5位</span><span>katchkun / katchkun</span><span class="pt">325pt</span></div>
+            <div class="ranking-row"><span class="rank">6位</span><span>keimizu / keimizu</span><span class="pt">320pt</span></div>
+            <div class="ranking-row"><span class="rank">7位</span><span>Sk / Skitagawa</span><span class="pt">270pt</span></div>
+          </div>
+          <p style="margin-top:14px;">優勝者には豪華報酬を後日お届けします。</p>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/05/02</span><span class="badge badge-feat">FEATURE</span></div>
+          <h4>Nether OP を実装</h4>
+          <p>新しいアリーナで対戦できる「Nether OP」が実装されました。</p>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/05/01</span><span class="badge badge-fix">FIX</span></div>
+          <h4>エンダーパール消失問題を解決</h4>
+          <p>読み込まれていないチャンクに移動する際にエンダーパールが一時的に消失する問題を解決しました。エンダーパールキャッチが格段にやりやすくなります。</p>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/05/01</span><span class="badge badge-fix">FIX</span></div>
+          <h4>UHC のブロック復元が完了</h4>
+          <p>UHCのブロック復元問題が解決しました。これまで通り遊べます。</p>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/04/30</span><span class="badge badge-info">NOTICE</span></div>
+          <h4>UHC の利用停止（一時的）</h4>
+          <p>UHCでブロックが復元できていない問題が発見されたため、修正完了まで一時的に利用を停止します。ご不便おかけしますが、ご理解ください。</p>
+        </div>
+
+        <div class="update-item">
+          <div class="meta"><span class="date">2026/04 中</span><span class="badge badge-fix">BUGFIX</span></div>
+          <h4>Retbare 2.9.8 バグ修正</h4>
+          <p>ロビーなどでDuelに参加できてしまうコマンドを無効にしました。<code>/warp duel</code> を実行した後にのみ、Duelに参加できる仕様に変更しました。</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ========== FAQ ========== -->
 <section id="faq">
   <div class="section-header"><img src="Section_header_banner_2400x600_dimensions_41_asp_7.png" alt="よくある質問"></div>
-  <div class="section-dark">
+  <div class="section-light">
     <div class="section-body faq">
       <p class="lead">よくある質問をまとめました。ここに載っていない質問はDiscordでお気軽にどうぞ。</p>
       <details><summary>サーバーへの参加方法は？</summary><div class="ans">Minecraft Java版1.21.1を起動し、マルチプレイからサーバーを追加。アドレス欄に <strong>110.67.56.168:25565</strong> を入力して接続してください。</div></details>
       <details><summary>統合版でも遊べますか？</summary><div class="ans">統合版（アドレス: 110.67.56.168:19132）からも接続可能ですが、現在多数の不具合があるため、Java版での接続を推奨しています。統合版プレイヤーは名前の先頭にドット（.）がつきます。</div></details>
-      <details><summary>お金（円）の確認方法は？</summary><div class="ans"><code>/money</code> コマンドで現在の所持金を確認できます。<code>/bal</code> でも同じ結果が表示されます。</div></details>
-      <details><summary>ガチャはどこで引けますか？</summary><div class="ans">マジック・エンチャントガチャはShopスポーン左のシュルカーボックス5個の場所で直接開封できます。ダイヤガチャはウーパールーパーのショップ（ネザライトブロック周辺）、スポナーガチャはキーを購入して開封します。</div></details>
-      <details><summary>MobCoinって何ですか？</summary><div class="ans">モブを倒すと得られる特殊通貨です。通常の円とは別系統で、<code>/mobcoins</code> で残高確認、<code>/mobcoins shop</code> でSmartSpawnerなどを購入できます。</div></details>
-      <details><summary>SmartSpawnerとは？</summary><div class="ans">実際にモブをスポーンさせず、ドロップアイテムとXPを仮想生成するスポナーです。サーバー負荷ゼロでアイテムが貯まる最強の自動ファームを作れます。スポナー同士のスタックも可能。</div></details>
-      <details><summary>リカバリートーテムって？</summary><div class="ans">インベントリに入れた状態で死亡すると、トーテム自体は消費されますが、他の全アイテムが保持される独自アイテムです。Shopで2,000円、マジックガチャでも入手可能。</div></details>
-      <details><summary>3×3ツルハシって？</summary><div class="ans">通常の1ブロックではなく3×3の9ブロックを一度に掘れる特殊ツルハシ。Shopで35,000円、マジックガチャでも入手可能です。</div></details>
-      <details><summary>オークションのアイテムが消えました</summary><div class="ans">出品後一定時間で期限切れになります。<code>/ah</code> を開き、期限切れ一覧から回収できる場合があります。</div></details>
-      <details><summary>ワールド間の移動は？</summary><div class="ans"><code>/rmenu</code> で統合メニューを開き、OneBlock・PVP・サバイバルなど各ワールドに移動できます。</div></details>
-      <details><summary>困ったときは？</summary><div class="ans"><a href="https://discord.gg/2v7JbraYBY" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid var(--gold);">Discordサーバー</a>でチケットを作成し、スタッフに相談してください。</div></details>
+      <details><summary>Duelはどうやって遊ぶ？</summary><div class="ans"><code>/warp duel</code> でDuelロビーへ移動し、<code>/duel</code> でGUIを開きます。UHC・UHC FFA・Sword・Axe・Pot・Sumo・Mace・NoDebuffの8種目から選んでマッチング。UHC FFA以外は1vs1形式です。</div></details>
+      <details><summary>コスメティックの使い方は？</summary><div class="ans">サーバーロビーで <code>/uc menu</code> を実行するとコスメメニューが開きます。ガジェット・ペット・マウント・モーフなどを選んで装備可能。Duelアリーナ内では使用できません。コスメガチャは2,000円で1回引けます。</div></details>
+      <details><summary>トレードのやり方は？</summary><div class="ans"><code>/trade &lt;相手の名前&gt;</code> でリクエストを送信。相手が承認するとトレード画面が開き、お互いにアイテムをセットして取引できます。<code>/trade aspect &lt;名前&gt;</code> で拡張トレードも可能。</div></details>
+      <details><summary>お金（円）の確認方法は？</summary><div class="ans"><code>/money</code> コマンドで現在の所持金を確認できます。</div></details>
+      <details><summary>ガチャはどこで引けますか？</summary><div class="ans">マジック・エンチャントガチャはShopスポーン左のシュルカーボックス5個の場所で直接開封。ダイヤガチャはウーパールーパーのショップ（ネザライトブロック周辺）、スポナーガチャはキーを購入して開封します。</div></details>
+      <details><summary>MobCoinって何ですか？</summary><div class="ans">モブを倒すと得られる特殊通貨です。<code>/mobcoins</code> で残高確認、<code>/mobcoins shop</code> でSmartSpawnerなどを購入できます。</div></details>
+      <details><summary>SmartSpawnerとは？</summary><div class="ans">実際にモブをスポーンさせず、ドロップアイテムとXPを仮想生成するスポナー。サーバー負荷ゼロでアイテムが貯まる最強の自動ファームを作れます。</div></details>
+      <details><summary>リカバリートーテムって？</summary><div class="ans">インベントリに入れた状態で死亡すると、トーテム自体は消費されますが、他の全アイテムが保持される独自アイテム。Shopで2,000円、マジックガチャでも入手可能です。</div></details>
+      <details><summary>困ったときは？</summary><div class="ans"><a href="https://discord.gg/2v7JbraYBY" target="_blank" rel="noopener" style="color:var(--blue);border-bottom:1px solid var(--blue);">Discordサーバー</a>でチケットを作成し、スタッフに相談してください。</div></details>
     </div>
   </div>
 </section>
@@ -789,10 +1091,14 @@ footer{
       <ul>
         <li><a href="#overview">サーバー概要</a></li>
         <li><a href="#pvp">PVPコンテンツ</a></li>
+        <li><a href="#duel">Duel</a></li>
         <li><a href="#economy">経済システム</a></li>
         <li><a href="#gacha">ガチャ</a></li>
+        <li><a href="#cosmetics">コスメティック</a></li>
+        <li><a href="#trade">トレード</a></li>
         <li><a href="#commands">コマンド</a></li>
         <li><a href="#rules">ルール</a></li>
+        <li><a href="#updates">アップデート履歴</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
     </div>
@@ -815,19 +1121,14 @@ footer{
 <div class="toast" id="toast">コピーしました</div>
 
 <script>
-// ===== ナビ背景濃度 =====
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-});
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
 
-// ===== ハンバーガー =====
 const burger = document.getElementById('burger');
 const navLinks = document.getElementById('navLinks');
 burger.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-// ===== コピー機能 =====
 const toast = document.getElementById('toast');
 let toastTimer;
 document.querySelectorAll('[data-copy]').forEach(btn => {
@@ -835,24 +1136,18 @@ document.querySelectorAll('[data-copy]').forEach(btn => {
     const text = btn.getAttribute('data-copy');
     try {
       await navigator.clipboard.writeText(text);
-      toast.textContent = `COPIED: ${text}`;
-      toast.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
     } catch(e) {
-      // フォールバック
       const ta = document.createElement('textarea');
       ta.value = text; document.body.appendChild(ta); ta.select();
       document.execCommand('copy'); document.body.removeChild(ta);
-      toast.textContent = `COPIED: ${text}`;
-      toast.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
     }
+    toast.textContent = `COPIED: ${text}`;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
   });
 });
 
-// ===== スクロールリビール =====
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -861,9 +1156,9 @@ const io = new IntersectionObserver((entries) => {
       io.unobserve(e.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 
-document.querySelectorAll('.overview-card, .content-card, .money-item, .gacha-card, .feature-row, .cmd-row').forEach(el => {
+document.querySelectorAll('.overview-card, .content-card, .money-item, .gacha-card, .feature-row, .cosmo-block, .update-item, .trade-cmd-card').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(24px)';
   el.style.transition = 'opacity .5s ease, transform .5s ease';
